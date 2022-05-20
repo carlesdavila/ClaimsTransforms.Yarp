@@ -2,7 +2,7 @@
 
 namespace ClaimsTransforms.Yarp;
 
-public class ClaimsTransformFactory : ITransformFactory
+internal sealed class ClaimsTransformFactory : ITransformFactory
 {
     internal static readonly string AppendClaimKey = "AppendClaim";
 
@@ -15,7 +15,6 @@ public class ClaimsTransformFactory : ITransformFactory
                 context.Errors.Add(new ArgumentException(
                     "A non-empty AppendClaim value is required"));
             }
-
             return true; // Matched
         }
         return false;

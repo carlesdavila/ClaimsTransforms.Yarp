@@ -6,13 +6,13 @@ namespace ClaimsTransforms.Yarp;
 
 public static class AppendClaimTransformExtensions
 {
-    public static TransformBuilderContext AddAppendClaim(this TransformBuilderContext context, string claimType)
+    internal static TransformBuilderContext AddAppendClaim(this TransformBuilderContext context, string claimType)
     {
         context.RequestTransforms.Add(new AppendClaimTransform(claimType));
         return context;
     }
 
-    public static RouteConfig WithAppendClaimTransform(this RouteConfig routeConfig, string claimType)
+    public static RouteConfig WithTransformAppendClaim(this RouteConfig routeConfig, string claimType)
     {
         return routeConfig.WithTransform(transform =>
         {

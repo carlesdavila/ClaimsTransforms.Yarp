@@ -4,10 +4,33 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <PackageVersion>1.0</PackageVersion>
+    <PackageId>ClaimsTransforms.Yarp</PackageId>
+    <Title>ClaimsTransforms Yarp</Title>
+    <Authors>Carles Davila</Authors>
+    <Description>Yarp Request Transforms using Claims</Description>
+    <PackageProjectUrl>https://github.com/carlesdavila/ClaimsTransforms.Yarp</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/carlesdavila/ClaimsTransforms.Yarp</RepositoryUrl>
+
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+    <MinVerDefaultPreReleasePhase>preview</MinVerDefaultPreReleasePhase>
+    <MinVerAutoIncrement>minor</MinVerAutoIncrement>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MinVer" Version="4.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Yarp.ReverseProxy" Version="1.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  
 </Project>

@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using ClaimsTransforms.Yarp;
 
-namespace ClaimsTransforms.Yarp;
+namespace Microsoft.Extensions.DependencyInjection;
 
 public static class ReverseProxyExtensions
 {
-    public static IReverseProxyBuilder AddTransformFactory(this IReverseProxyBuilder builder)
+    public static IReverseProxyBuilder AddClaimsTransforms(this IReverseProxyBuilder builder)
     {
         builder.AddTransformFactory<ClaimsTransformFactory>();
         return builder;

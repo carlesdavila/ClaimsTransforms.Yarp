@@ -20,7 +20,7 @@ public static class YarpConfig
                 }
             }
             .WithTransformPathSet("/users")
-            .WithTransformAppendClaim(ClaimTypes.Name)
+            .WithTransformAppendClaim(ClaimTypes.NameIdentifier)
     };
 
     public static ClusterConfig[] Clusters => new[]

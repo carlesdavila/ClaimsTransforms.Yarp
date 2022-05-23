@@ -32,9 +32,54 @@ Code:
 new RouteConfig
 {
     AuthorizationPolicy = "default",
+    RouteId = "Route1",
+    ClusterId = "Cluster1",
     Match = new RouteMatch
     {
-        Path = "/profile"
+        Path = "/profiles/me"
     }
-}.WithTransformAppendClaim(ClaimTypes.NameIdentifier)
+}
+.WithTransformPathSet("/users")
+.WithTransformAppendClaim(ClaimTypes.NameIdentifier)
 ```
+
+If ClaimsPrincipal contains 
+ 
+``` c#   
+ new Claim[] { new ("user-id", "1234") }
+```
+
+RouteConfig code matches _/profiles/me_ route and transforms to _/users/1234_
+
+### Claims Transform Prefix
+
+Will include prefix to routes based on claims pattern. 
+Claims pattern will replace values between { and } with Claim value.
+
+Claims Prefix Pattern example:
+   
+     /route/{claim-type}
+
+
+Code:
+``` c#
+new RouteConfig
+{
+    AuthorizationPolicy = "default",
+    Match = new RouteMatch
+    {
+        Path = "/assets/{**catchall}"
+    }
+}
+.WithTransformClaimsPrefix($"/tenants/{{tenant-id}}/users/{{{ClaimTypes.NameIdentifier}}}")
+```
+
+Example:
+
+| **Step**         | **Value**                                                         |
+|------------------|-------------------------------------------------------------------|
+| Route definition | /assets/{**catchall}                                              |
+| Request path     | /assets/action                                                    |
+| Claims Pattern   | /tenants/{tenant-id}/users/{user-id}                              |
+| Claims Principal | new Claim[] { new ("user-id", "1234"), new ("tenant-id", "abc") } |
+| Result           | /tenants/abc/users/1234/assets/action                             |

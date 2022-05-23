@@ -20,7 +20,18 @@ public static class YarpConfig
                 }
             }
             .WithTransformPathSet("/users")
-            .WithTransformAppendClaim(ClaimTypes.NameIdentifier)
+            .WithTransformAppendClaim(ClaimTypes.NameIdentifier),
+        new RouteConfig
+            {
+                AuthorizationPolicy = "default",
+                RouteId = "Route2",
+                ClusterId = "Cluster1",
+                Match = new RouteMatch
+                {
+                    Path = "/assets/{**catchall}"
+                }
+            }
+            .WithTransformClaimsPrefix($"/tenants/{{tenant-id}}/users/{{{ClaimTypes.NameIdentifier}}}")
     };
 
     public static ClusterConfig[] Clusters => new[]
@@ -30,7 +41,7 @@ public static class YarpConfig
             ClusterId = "Cluster1",
             Destinations = new Dictionary<string, DestinationConfig>(StringComparer.OrdinalIgnoreCase)
             {
-                { "destination1", new DestinationConfig { Address = "http://www.example.com/" } }
+                { "destination1", new DestinationConfig { Address = "https://httpbin.org/anything/" } }
             }
         }
     };

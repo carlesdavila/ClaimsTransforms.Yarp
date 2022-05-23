@@ -49,7 +49,7 @@ If ClaimsPrincipal contains
  new Claim[] { new ("user-id", "1234") }
 ```
 
-RouteConfig code matches _/profiles/me_ route and transforms to _/users/1234_
+RouteConfig code matches ***/profiles/me*** and transforms to ***/users/1234***
 
 ### Claims Transform Prefix
 

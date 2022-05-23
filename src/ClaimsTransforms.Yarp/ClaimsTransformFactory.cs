@@ -10,10 +10,14 @@ internal sealed class ClaimsTransformFactory : ITransformFactory
     {
         if (transformValues.TryGetValue(AppendClaimKey, out var value))
         {
+            if (context.Route.AuthorizationPolicy is null)
+            {
+                context.Errors.Add(new ArgumentNullException(context.Route.AuthorizationPolicy,"AuthorizationPolicy value is required"));
+            }
+            
             if (string.IsNullOrEmpty(value))
             {
-                context.Errors.Add(new ArgumentException(
-                    "A non-empty AppendClaim value is required"));
+                context.Errors.Add(new ArgumentException("A non-empty AppendClaim value is required"));
             }
             return true; // Matched
         }

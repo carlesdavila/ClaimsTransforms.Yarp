@@ -76,10 +76,10 @@ new RouteConfig
 
 Example:
 
-| **Step**         | **Value**                                                         |
-|------------------|-------------------------------------------------------------------|
-| Route definition | /assets/{**catchall}                                              |
-| Request path     | /assets/action                                                    |
-| Claims Pattern   | /tenants/{tenant-id}/users/{user-id}                              |
-| Claims Principal | new Claim[] { new ("user-id", "1234"), new ("tenant-id", "abc") } |
-| Result           | /tenants/abc/users/1234/assets/action                             |
+| **Step**              | **Value**                                                         |
+|-----------------------|-------------------------------------------------------------------|
+| Route definition      | /assets/{**catchall}                                              |
+| Request path          | /assets/action                                                    |
+| Claims Prefix Pattern | /tenants/{tenant-id}/users/{user-id}                              |
+| Claims Principal      | new Claim[] { new ("user-id", "1234"), new ("tenant-id", "abc") } |
+| Result                | /tenants/abc/users/1234/assets/action                             |

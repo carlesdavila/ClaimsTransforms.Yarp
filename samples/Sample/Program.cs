@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddReverseProxy()
     .LoadFromMemory(YarpConfig.Routes, YarpConfig.Clusters)
+    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"))
     .AddClaimsTransforms();
 
 builder.Services.AddAuthorization();
@@ -17,6 +18,7 @@ app.Use(async (context, next) =>
     context.User.AddIdentity(new ClaimsIdentity(new Claim[]
     {
         new (ClaimTypes.NameIdentifier, Guid.NewGuid().ToString()),
+        new("user-id", "112233"),
         new("tenant-id", "1234")
     }, "mock"));
     await next();

@@ -27,7 +27,8 @@ Adding transforms to routes
 Will append first value of claim type parameter to the end of the route.
 
 
-Code:
+**Code:**
+
 ``` c#
 new RouteConfig
 {
@@ -51,6 +52,24 @@ If ClaimsPrincipal contains
 
 RouteConfig code matches ***/profiles/me*** and transforms to ***/users/1234***
 
+**Config:**
+
+``` json
+"Routes": {
+  "SampleRoutes": {
+    "AuthorizationPolicy": "default",
+    "Match": {
+      "Path": "/account"
+    },
+    "Transforms": [
+      { "AppendClaim": "user-id" }
+    ]
+  }
+}
+```
+
+RouteConfig code matches ***/account*** and transforms to ***/account/1234***
+
 ### Claims Transform Prefix
 
 Will include prefix to routes based on claims pattern. 
@@ -61,7 +80,7 @@ Claims Prefix Pattern example:
      /route/{claim-type}
 
 
-Code:
+**Code:**
 ``` c#
 new RouteConfig
 {

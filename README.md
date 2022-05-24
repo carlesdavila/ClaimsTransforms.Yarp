@@ -13,6 +13,7 @@ install ClaimsTransforms.Yarp from [NuGet](https://www.nuget.org/packages/Claims
 ### Setup
 
 Add Claims Transforms to Yarp services
+
 ``` c#
 builder.Services.AddReverseProxy()
 .AddClaimsTransforms();
@@ -21,11 +22,9 @@ builder.Services.AddReverseProxy()
 Adding transforms to routes
 --------------------------------
 
-
 ### Append Claim Transform
 
 Will append first value of claim type parameter to the end of the route.
-
 
 **Code:**
 
@@ -44,8 +43,8 @@ new RouteConfig
 .WithTransformAppendClaim(ClaimTypes.NameIdentifier)
 ```
 
-If ClaimsPrincipal contains 
- 
+If ClaimsPrincipal contains
+
 ``` c#   
  new Claim[] { new ("user-id", "1234") }
 ```
@@ -56,7 +55,7 @@ RouteConfig code matches ***/profiles/me*** and transforms to ***/users/1234***
 
 ``` json
 "Routes": {
-  "SampleRoutes": {
+  "SampleRoute1": {
     "AuthorizationPolicy": "default",
     "Match": {
       "Path": "/account"
@@ -72,15 +71,15 @@ RouteConfig code matches ***/account*** and transforms to ***/account/1234***
 
 ### Claims Transform Prefix
 
-Will include prefix to routes based on claims pattern. 
+Will include prefix to routes based on claims pattern.
 Claims pattern will replace values between { and } with Claim value.
 
 Claims Prefix Pattern example:
-   
+
      /route/{claim-type}
 
-
 **Code:**
+
 ``` c#
 new RouteConfig
 {
@@ -91,6 +90,23 @@ new RouteConfig
     }
 }
 .WithTransformClaimsPrefix($"/tenants/{{tenant-id}}/users/{{{ClaimTypes.NameIdentifier}}}")
+```
+
+**Config:**
+
+``` json
+"Routes": {
+    "SampleRoute2": {
+      "AuthorizationPolicy": "default",
+      "Match": {
+        "Path": "/assets/{**catchall}"
+      },
+      "Transforms": [
+        { "ClaimsPrefix": "/tenants/{tenant-id}/users/{user-id}" }
+      ]
+    }
+  }
+}
 ```
 
 Example:

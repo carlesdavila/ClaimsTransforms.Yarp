@@ -105,7 +105,6 @@ new RouteConfig
         { "ClaimsPrefix": "/tenants/{tenant-id}/users/{user-id}" }
       ]
     }
-  }
 }
 ```
 

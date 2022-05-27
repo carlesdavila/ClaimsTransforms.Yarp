@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using ClaimsTransforms.Yarp;
 
-namespace ClaimsTransforms.Yarp;
+namespace Microsoft.Extensions.DependencyInjection;
 
 public static class ReverseProxyExtensions
 {

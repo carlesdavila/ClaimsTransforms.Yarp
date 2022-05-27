@@ -1,5 +1,4 @@
 using System.Security.Claims;
-using ClaimsTransforms.Yarp;
 using Sample;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -2,7 +2,7 @@
 
 _[![NuGet version](https://img.shields.io/nuget/v/ClaimsTransforms.Yarp)](https://www.nuget.org/packages/ClaimsTransforms.Yarp)_
 
-Yarp Request Transforms using Claims.
+[Yarp Request Transforms](https://microsoft.github.io/reverse-proxy/articles/transforms.html) using Claims.
 
 ### Installation
 
